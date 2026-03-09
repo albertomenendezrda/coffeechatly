@@ -103,7 +103,7 @@ export default function Login() {
               </div>
             </div>
 
-            <Link to="/">
+            <Link to="/dashboard">
               <button
                 type="submit"
                 className="w-full py-2.5 px-4 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors"

@@ -162,7 +162,7 @@ export default function ChatDetail() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <p className="text-gray-600 mb-4">Chat not found.</p>
-          <Link to="/" className="text-gray-900 font-medium hover:underline">
+          <Link to="/dashboard" className="text-gray-900 font-medium hover:underline">
             Back to Dashboard
           </Link>
         </div>
@@ -179,7 +179,7 @@ export default function ChatDetail() {
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-3">
-            <Link to="/" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+            <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
               <ArrowLeft className="w-4 h-4" />
               Back to Dashboard
             </Link>

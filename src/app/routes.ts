@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router";
+import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import ChatDetail from "./pages/ChatDetail";
 import JobWishlistDetail from "./pages/JobWishlistDetail";
@@ -10,6 +11,10 @@ import CVUpload from "./pages/CVUpload";
 export const router = createBrowserRouter([
   {
     path: "/",
+    Component: Home,
+  },
+  {
+    path: "/dashboard",
     Component: Dashboard,
   },
   {

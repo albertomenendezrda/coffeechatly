@@ -152,12 +152,12 @@ export default function CVUpload() {
           </Link>
           
           <div className="flex items-center gap-3">
-            <Link to="/">
+            <Link to="/dashboard">
               <button className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50 transition-colors">
                 Skip for now
               </button>
             </Link>
-            <Link to="/">
+            <Link to="/dashboard">
               <button className="px-6 py-2.5 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors">
                 {uploadedFile ? "Complete Setup" : "Finish"}
               </button>
