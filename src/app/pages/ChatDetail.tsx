@@ -35,6 +35,97 @@ const chatData = {
       "Summer associate program structure"
     ],
     notes: "Met at Sloan networking event last month. She mentioned interest in helping students with engineering backgrounds. Very approachable."
+  },
+  "2": {
+    name: "Michael Torres",
+    company: "Bain Capital",
+    role: "Principal",
+    date: "Mar 4, 2026",
+    time: "10:30 AM",
+    objective: "Understand PE recruiting timeline and cultural fit",
+    prepProgress: 45,
+    linkedinUrl: "linkedin.com/in/michaeltorres",
+    email: "michael.torres@baincapital.com",
+    background: {
+      education: "Harvard Business School '15, Princeton '08",
+      experience: "8 years at Bain Capital, previously Bain & Company",
+      expertise: "Healthcare and growth investing"
+    },
+    prepTasks: [
+      { id: 1, task: "Review Michael's deal history and portfolio companies", completed: true },
+      { id: 2, task: "Research Bain Capital's recent healthcare investments", completed: true },
+      { id: 3, task: "Prepare questions on PE vs consulting career path", completed: false },
+      { id: 4, task: "Draft talking points on my consulting interest and fit", completed: false },
+      { id: 5, task: "Prepare follow-up email template", completed: false }
+    ],
+    conversationPoints: [
+      "His path from Bain consulting to Bain Capital",
+      "What they look for in Associate candidates",
+      "Healthcare sector focus and deal flow",
+      "Timeline for summer/full-time recruiting"
+    ],
+    notes: "Referred by Lisa Nguyen (Bain). Michael is on the healthcare team. Interested in candidates with operations/strategy background."
+  },
+  "3": {
+    name: "Jessica Park",
+    company: "BCG",
+    role: "Project Leader",
+    date: "Mar 5, 2026",
+    time: "3:30 PM",
+    objective: "Learn about practice area specifics and case prep insights",
+    prepProgress: 30,
+    linkedinUrl: "linkedin.com/in/jessicapark",
+    email: "jessica.park@bcg.com",
+    background: {
+      education: "MIT Sloan '19, UCLA '14",
+      experience: "5 years at BCG, previously in healthcare strategy",
+      expertise: "Healthcare practice, change management"
+    },
+    prepTasks: [
+      { id: 1, task: "Review Jessica's LinkedIn and recent posts", completed: true },
+      { id: 2, task: "Research BCG healthcare practice and cases", completed: false },
+      { id: 3, task: "Prepare 3 practice case questions", completed: false },
+      { id: 4, task: "List questions about PL role and team structure", completed: false },
+      { id: 5, task: "Prepare positioning: why BCG, why healthcare", completed: false },
+      { id: 6, task: "Draft follow-up email template", completed: false }
+    ],
+    conversationPoints: [
+      "Healthcare practice at BCG vs other firms",
+      "Case interview preparation and phenomenon cases",
+      "Project Leader role and day-to-day",
+      "Boston office culture and staffing"
+    ],
+    notes: "Connected through BCG event at Sloan. She's in the healthcare practice and has done recruiting before."
+  },
+  "4": {
+    name: "David Kumar",
+    company: "Google",
+    role: "Product Manager",
+    date: "Mar 6, 2026",
+    time: "11:00 AM",
+    objective: "Validate PM transition from consulting background",
+    prepProgress: 0,
+    linkedinUrl: "linkedin.com/in/davidkumar",
+    email: "david.kumar@google.com",
+    background: {
+      education: "Stanford GSB '17, IIT Bombay '12",
+      experience: "4 years at Google, previously McKinsey digital practice",
+      expertise: "Product strategy, B2B products"
+    },
+    prepTasks: [
+      { id: 1, task: "Review David's product area and recent launches", completed: false },
+      { id: 2, task: "Research Google APM vs PM hiring paths", completed: false },
+      { id: 3, task: "Prepare story: consulting to PM transition", completed: false },
+      { id: 4, task: "List questions on PM role and interview process", completed: false },
+      { id: 5, task: "Prepare follow-up email template", completed: false }
+    ],
+    conversationPoints: [
+      "His move from McKinsey to Google PM",
+      "How consulting skills translate to product",
+      "Google PM interview process and prep",
+      "B2B vs B2C and which fits my background"
+    ],
+    notes: "Cold outreach via LinkedIn. He transitioned from consulting to PM and is open to sharing his experience. Chat not yet prepped."
   }
 };
 

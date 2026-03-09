@@ -102,6 +102,160 @@ const jobData = {
       { id: 3, action: "Draft application essays", priority: "high", due: "Mar 20, 2026" },
       { id: 4, action: "Request recommendation letter from Professor Chen", priority: "medium", due: "Mar 15, 2026" }
     ]
+  },
+  "2": {
+    company: "Bain & Company",
+    role: "Associate Consultant",
+    status: "networking" as const,
+    contactsMade: 2,
+    targetContacts: 5,
+    applicationDeadline: "Apr 20, 2026",
+    overallProgress: 45,
+    description: "Associate Consultant role for MBA graduates. Work on strategy and performance improvement projects across industries. Strong emphasis on case team culture.",
+    location: "Boston, MA / San Francisco, CA",
+    applicationUrl: "bain.com/careers/apply",
+    timeline: [
+      { date: "Mar 1, 2026", event: "Research phase started", completed: true },
+      { date: "Mar 15, 2026", event: "Networking goal: 5 contacts", completed: false },
+      { date: "Apr 5, 2026", event: "Application materials due", completed: false },
+      { date: "Apr 20, 2026", event: "Final application deadline", completed: false }
+    ],
+    contacts: [
+      { id: 1, name: "Michael Torres", role: "Principal", status: "scheduled", date: "Mar 4, 2026", outcome: null },
+      { id: 2, name: "Lisa Nguyen", role: "Consultant", status: "completed", date: "Feb 28, 2026", outcome: "Practice area insights" },
+      { id: 3, name: "James Chen", role: "Partner", status: "planned", date: "TBD", outcome: null },
+      { id: 4, name: "Emma Wilson", role: "Manager", status: "planned", date: "TBD", outcome: null },
+      { id: 5, name: "Ryan O'Brien", role: "Associate Consultant", status: "planned", date: "TBD", outcome: null }
+    ],
+    suggestedContacts: [
+      { id: 1, name: "Nina Patel", role: "Manager", connectionDegree: "2nd", mutualConnection: "Michael Torres", reason: "PE practice, Sloan alum" },
+      { id: 2, name: "Chris Martinez", role: "Partner", connectionDegree: "3rd", mutualConnection: "Lisa Nguyen → James Chen", reason: "Boston office recruiting lead" }
+    ],
+    researchNotes: [
+      "Known for private equity diligence and commercial due diligence",
+      "Case interview: fit + case, emphasis on teamwork",
+      "Summer program leads to full-time offer for most"
+    ],
+    nextActions: [
+      { id: 1, action: "Prepare for Michael Torres chat (Mar 4)", priority: "high", due: "Mar 4, 2026" },
+      { id: 2, action: "Identify 2 more Bain contacts", priority: "medium", due: "Mar 12, 2026" },
+      { id: 3, action: "Review Bain case frameworks", priority: "medium", due: "Mar 18, 2026" }
+    ]
+  },
+  "3": {
+    company: "Boston Consulting Group",
+    role: "Consultant",
+    status: "researching" as const,
+    contactsMade: 1,
+    targetContacts: 4,
+    applicationDeadline: "Apr 18, 2026",
+    overallProgress: 30,
+    description: "Consultant position for MBAs. BCG focuses on strategy, transformation, and digital. Global offices with strong practice areas in healthcare and technology.",
+    location: "Boston, MA / New York, NY / Chicago, IL",
+    applicationUrl: "bcg.com/careers",
+    timeline: [
+      { date: "Mar 5, 2026", event: "Research phase started", completed: true },
+      { date: "Mar 20, 2026", event: "Networking goal: 4 contacts", completed: false },
+      { date: "Apr 10, 2026", event: "Application submitted", completed: false },
+      { date: "Apr 18, 2026", event: "Final application deadline", completed: false }
+    ],
+    contacts: [
+      { id: 1, name: "Jessica Park", role: "Project Leader", status: "scheduled", date: "Mar 5, 2026", outcome: null },
+      { id: 2, name: "David Kim", role: "Partner", status: "planned", date: "TBD", outcome: null },
+      { id: 3, name: "Amanda Foster", role: "Consultant", status: "planned", date: "TBD", outcome: null },
+      { id: 4, name: "Tom Bradley", role: "Managing Director", status: "planned", date: "TBD", outcome: null }
+    ],
+    suggestedContacts: [
+      { id: 1, name: "Rachel Green", role: "Principal", connectionDegree: "2nd", mutualConnection: "Jessica Park", reason: "Healthcare practice, case prep tips" },
+      { id: 2, name: "Mark Sullivan", role: "Partner", connectionDegree: "3rd", mutualConnection: "Jessica Park → David Kim", reason: "Boston office lead" }
+    ],
+    researchNotes: [
+      "Strong in healthcare and technology practices",
+      "Phenomenon-based cases in addition to traditional",
+      "Culture: collaborative, intellectual rigor"
+    ],
+    nextActions: [
+      { id: 1, action: "Complete prep for Jessica Park chat", priority: "high", due: "Mar 5, 2026" },
+      { id: 2, action: "Map BCG practice areas of interest", priority: "medium", due: "Mar 14, 2026" },
+      { id: 3, action: "Schedule 2 more BCG coffee chats", priority: "high", due: "Mar 22, 2026" }
+    ]
+  },
+  "4": {
+    company: "Goldman Sachs",
+    role: "Investment Banking Analyst",
+    status: "applying" as const,
+    contactsMade: 4,
+    targetContacts: 4,
+    applicationDeadline: "Mar 30, 2026",
+    overallProgress: 85,
+    description: "Investment Banking Analyst role in one of Goldman's industry or product groups. Deal execution, modeling, and client support. Fast-paced recruiting timeline.",
+    location: "New York, NY / San Francisco, CA",
+    applicationUrl: "goldmansachs.com/careers",
+    timeline: [
+      { date: "Feb 15, 2026", event: "Networking phase started", completed: true },
+      { date: "Mar 1, 2026", event: "Target 4 contacts reached", completed: true },
+      { date: "Mar 25, 2026", event: "Application submitted", completed: false },
+      { date: "Mar 30, 2026", event: "Final application deadline", completed: false }
+    ],
+    contacts: [
+      { id: 1, name: "Rachel Martinez", role: "Vice President", status: "completed", date: "Feb 20, 2026", outcome: "Follow-up pending" },
+      { id: 2, name: "Kevin Zhang", role: "Associate", status: "completed", date: "Feb 22, 2026", outcome: "Referral submitted" },
+      { id: 3, name: "Sophie Lee", role: "Managing Director", status: "completed", date: "Mar 1, 2026", outcome: "Interview tips shared" },
+      { id: 4, name: "Alex Thompson", role: "Analyst", status: "completed", date: "Feb 28, 2026", outcome: "Reflection due" }
+    ],
+    suggestedContacts: [
+      { id: 1, name: "Jordan Blake", role: "Partner", connectionDegree: "2nd", mutualConnection: "Sophie Lee", reason: "TMT group head" }
+    ],
+    researchNotes: [
+      "IBD recruiting is early—applications in March",
+      "Technical and fit interviews; know your story",
+      "Group selection matters for culture and deal flow"
+    ],
+    nextActions: [
+      { id: 1, action: "Send follow-up to Rachel Martinez", priority: "high", due: "Feb 28, 2026" },
+      { id: 2, action: "Submit application and essays", priority: "high", due: "Mar 25, 2026" },
+      { id: 3, action: "Complete post-chat reflection for Alex Thompson", priority: "medium", due: "Mar 2, 2026" }
+    ]
+  },
+  "5": {
+    company: "Bain Capital",
+    role: "Private Equity Associate",
+    status: "networking" as const,
+    contactsMade: 2,
+    targetContacts: 6,
+    applicationDeadline: "May 5, 2026",
+    overallProgress: 40,
+    description: "Private Equity Associate role. Work on due diligence, portfolio company value creation, and new investments. Typically requires consulting or banking background.",
+    location: "Boston, MA / New York, NY",
+    applicationUrl: "baincapital.com/careers",
+    timeline: [
+      { date: "Mar 1, 2026", event: "Research phase started", completed: true },
+      { date: "Apr 1, 2026", event: "Networking goal: 6 contacts", completed: false },
+      { date: "Apr 25, 2026", event: "Application materials due", completed: false },
+      { date: "May 5, 2026", event: "Final application deadline", completed: false }
+    ],
+    contacts: [
+      { id: 1, name: "Michael Torres", role: "Principal", status: "scheduled", date: "Mar 4, 2026", outcome: null },
+      { id: 2, name: "Claire Hughes", role: "Vice President", status: "completed", date: "Feb 26, 2026", outcome: "Sector overview" },
+      { id: 3, name: "Daniel Park", role: "Associate", status: "planned", date: "TBD", outcome: null },
+      { id: 4, name: "Nicole Adams", role: "Partner", status: "planned", date: "TBD", outcome: null },
+      { id: 5, name: "Eric Wong", role: "Principal", status: "planned", date: "TBD", outcome: null },
+      { id: 6, name: "Maya Johnson", role: "Director", status: "planned", date: "TBD", outcome: null }
+    ],
+    suggestedContacts: [
+      { id: 1, name: "Steve Collins", role: "Managing Director", connectionDegree: "2nd", mutualConnection: "Michael Torres", reason: "Healthcare investing" },
+      { id: 2, name: "Kate Morrison", role: "Principal", connectionDegree: "3rd", mutualConnection: "Claire Hughes → Daniel Park", reason: "Recruiting committee" }
+    ],
+    researchNotes: [
+      "PE recruiting follows consulting/banking timelines",
+      "Focus on deal experience and modeling skills",
+      "Culture varies by team and sector"
+    ],
+    nextActions: [
+      { id: 1, action: "Prepare for Michael Torres chat", priority: "high", due: "Mar 4, 2026" },
+      { id: 2, action: "Build list of 4 more Bain Capital contacts", priority: "medium", due: "Mar 20, 2026" },
+      { id: 3, action: "Refresh LBO and diligence knowledge", priority: "medium", due: "Apr 1, 2026" }
+    ]
   }
 };
 
