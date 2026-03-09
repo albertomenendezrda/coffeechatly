@@ -5,51 +5,13 @@ import { MetricCard } from "../components/MetricCard";
 import { WishlistJobCard } from "../components/WishlistJobCard";
 import { JobCard } from "../components/JobCard";
 import { ProfileDropdown } from "../components/ProfileDropdown";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "../components/ui/sheet";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Button } from "../components/ui/button";
+import { useMeetings } from "../context/MeetingsContext";
 import { useState } from "react";
-
-// Mock data
-const upcomingMeetings = [
-  {
-    id: 1,
-    name: "Sarah Chen",
-    company: "McKinsey & Company",
-    role: "Senior Engagement Manager",
-    date: "Mar 3, 2026",
-    time: "2:00 PM",
-    objective: "Secure referral for Summer Associate role",
-    prepProgress: 75
-  },
-  {
-    id: 2,
-    name: "Michael Torres",
-    company: "Bain Capital",
-    role: "Principal",
-    date: "Mar 4, 2026",
-    time: "10:30 AM",
-    objective: "Understand PE recruiting timeline and cultural fit",
-    prepProgress: 45
-  },
-  {
-    id: 3,
-    name: "Jessica Park",
-    company: "BCG",
-    role: "Project Leader",
-    date: "Mar 5, 2026",
-    time: "3:30 PM",
-    objective: "Learn about practice area specifics and case prep insights",
-    prepProgress: 30
-  },
-  {
-    id: 4,
-    name: "David Kumar",
-    company: "Google",
-    role: "Product Manager",
-    date: "Mar 6, 2026",
-    time: "11:00 AM",
-    objective: "Validate PM transition from consulting background",
-    prepProgress: 0
-  }
-];
+import { useNavigate } from "react-router";
 
 const deadlines = [
   {
@@ -171,13 +133,42 @@ const upcomingJobs = [
   }
 ];
 
+const defaultForm = {
+  name: "",
+  company: "",
+  role: "",
+  date: "",
+  time: "",
+  objective: "",
+};
+
 export default function Dashboard() {
+  const { meetings, addMeeting } = useMeetings();
+  const navigate = useNavigate();
   const [jobWishlists, setJobWishlists] = useState(
     upcomingJobs.reduce((acc, job) => ({ ...acc, [job.id]: job.isOnWishlist }), {})
   );
+  const [scheduleOpen, setScheduleOpen] = useState(false);
+  const [form, setForm] = useState(defaultForm);
 
   const toggleWishlist = (jobId: number) => {
     setJobWishlists(prev => ({ ...prev, [jobId]: !prev[jobId] }));
+  };
+
+  const handleScheduleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.company.trim() || !form.date.trim() || !form.time.trim()) return;
+    const newMeeting = addMeeting({
+      name: form.name.trim(),
+      company: form.company.trim(),
+      role: form.role.trim() || "—",
+      date: form.date.trim(),
+      time: form.time.trim(),
+      objective: form.objective.trim() || "—",
+    });
+    setForm(defaultForm);
+    setScheduleOpen(false);
+    navigate(`/chat/${newMeeting.id}`);
   };
 
   return (
@@ -191,14 +182,103 @@ export default function Dashboard() {
               <p className="text-sm text-gray-600 mt-0.5">MIT Sloan Recruiting Dashboard</p>
             </div>
             <div className="flex items-center gap-3">
-              <button className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors">
+              <Button
+                onClick={() => setScheduleOpen(true)}
+                className="bg-gray-900 text-white hover:bg-gray-800"
+              >
                 + Schedule New Chat
-              </button>
+              </Button>
               <ProfileDropdown />
             </div>
           </div>
         </div>
       </header>
+
+      {/* Schedule New Chat Sheet */}
+      <Sheet open={scheduleOpen} onOpenChange={setScheduleOpen}>
+        <SheetContent side="right" className="sm:max-w-md overflow-y-auto">
+          <SheetHeader>
+            <SheetTitle>Schedule New Chat</SheetTitle>
+            <SheetDescription>
+              Add a new coffee chat. You can fill in prep details from the chat page after saving.
+            </SheetDescription>
+          </SheetHeader>
+          <form onSubmit={handleScheduleSubmit} className="flex flex-col gap-4 mt-6 px-1">
+            <div className="space-y-2">
+              <Label htmlFor="schedule-name">Contact name *</Label>
+              <Input
+                id="schedule-name"
+                value={form.name}
+                onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                placeholder="e.g. Sarah Chen"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="schedule-company">Company *</Label>
+              <Input
+                id="schedule-company"
+                value={form.company}
+                onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
+                placeholder="e.g. McKinsey & Company"
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="schedule-role">Role</Label>
+              <Input
+                id="schedule-role"
+                value={form.role}
+                onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
+                placeholder="e.g. Senior Engagement Manager"
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="schedule-date">Date *</Label>
+                <Input
+                  id="schedule-date"
+                  type="date"
+                  value={form.date}
+                  onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="schedule-time">Time *</Label>
+                <Input
+                  id="schedule-time"
+                  type="time"
+                  value={form.time}
+                  onChange={(e) => setForm((f) => ({ ...f, time: e.target.value }))}
+                  required
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="schedule-objective">Conversation objective</Label>
+              <Input
+                id="schedule-objective"
+                value={form.objective}
+                onChange={(e) => setForm((f) => ({ ...f, objective: e.target.value }))}
+                placeholder="e.g. Secure referral for Summer Associate role"
+              />
+            </div>
+            <div className="flex gap-2 pt-2">
+              <Button type="submit" className="flex-1 bg-gray-900 hover:bg-gray-800">
+                Save & open chat
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setScheduleOpen(false)}
+              >
+                Cancel
+              </Button>
+            </div>
+          </form>
+        </SheetContent>
+      </Sheet>
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 py-8">
@@ -261,10 +341,10 @@ export default function Dashboard() {
                 <Calendar className="w-5 h-5" />
                 Upcoming Coffee Chats
               </h2>
-              <span className="text-sm text-gray-600">{upcomingMeetings.length} scheduled</span>
+              <span className="text-sm text-gray-600">{meetings.length} scheduled</span>
             </div>
             <div className="space-y-3">
-              {upcomingMeetings.map(meeting => (
+              {meetings.map(meeting => (
                 <MeetingCard key={meeting.id} {...meeting} />
               ))}
             </div>

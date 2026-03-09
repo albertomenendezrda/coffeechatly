@@ -1,7 +1,8 @@
 import { useParams, Link } from "react-router";
-import { ArrowLeft, Calendar, Clock, Target, CheckCircle2, Circle, User, Building2, Linkedin, Mail } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Target, CheckCircle2, Circle, Linkedin, Mail } from "lucide-react";
 import { CircularProgress } from "../components/CircularProgress";
 import { ProfileDropdown } from "../components/ProfileDropdown";
+import { useMeetings } from "../context/MeetingsContext";
 
 // Mock data - in real app would fetch based on ID
 const chatData = {
@@ -129,12 +130,44 @@ const chatData = {
   }
 };
 
+function meetingToChatDetail(meeting: { name: string; company: string; role: string; date: string; time: string; objective: string; prepProgress: number }) {
+  return {
+    name: meeting.name,
+    company: meeting.company,
+    role: meeting.role,
+    date: meeting.date,
+    time: meeting.time,
+    objective: meeting.objective,
+    prepProgress: meeting.prepProgress,
+    linkedinUrl: "",
+    email: "",
+    background: { education: "", experience: "", expertise: "" },
+    prepTasks: [
+      { id: 1, task: "Add prep tasks in Edit Prep Details", completed: false },
+    ],
+    conversationPoints: [] as string[],
+    notes: "This chat was just scheduled. Add contact info and prep details using Edit Prep Details.",
+  };
+}
+
 export default function ChatDetail() {
   const { id } = useParams();
-  const chat = chatData[id as keyof typeof chatData];
+  const { meetings } = useMeetings();
+  const staticChat = chatData[id as keyof typeof chatData];
+  const contextMeeting = meetings.find((m) => m.id === Number(id));
+  const chat = staticChat ?? (contextMeeting ? meetingToChatDetail(contextMeeting) : null);
 
   if (!chat) {
-    return <div>Chat not found</div>;
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-600 mb-4">Chat not found.</p>
+          <Link to="/" className="text-gray-900 font-medium hover:underline">
+            Back to Dashboard
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   const completedTasks = chat.prepTasks.filter(t => t.completed).length;
@@ -239,22 +272,29 @@ export default function ChatDetail() {
             <section className="bg-white border border-gray-300 rounded-lg p-5">
               <h2 className="font-semibold text-gray-900 mb-4">Contact Information</h2>
               <div className="space-y-3">
-                <a 
-                  href={`https://${chat.linkedinUrl}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-sm text-gray-700 hover:text-gray-900 p-2 hover:bg-gray-50 rounded transition-colors"
-                >
-                  <Linkedin className="w-4 h-4 text-blue-600" />
-                  <span>LinkedIn Profile</span>
-                </a>
-                <a 
-                  href={`mailto:${chat.email}`}
-                  className="flex items-center gap-3 text-sm text-gray-700 hover:text-gray-900 p-2 hover:bg-gray-50 rounded transition-colors"
-                >
-                  <Mail className="w-4 h-4 text-gray-600" />
-                  <span>{chat.email}</span>
-                </a>
+                {chat.linkedinUrl ? (
+                  <a 
+                    href={`https://${chat.linkedinUrl}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-gray-900 p-2 hover:bg-gray-50 rounded transition-colors"
+                  >
+                    <Linkedin className="w-4 h-4 text-blue-600" />
+                    <span>LinkedIn Profile</span>
+                  </a>
+                ) : null}
+                {chat.email ? (
+                  <a 
+                    href={`mailto:${chat.email}`}
+                    className="flex items-center gap-3 text-sm text-gray-700 hover:text-gray-900 p-2 hover:bg-gray-50 rounded transition-colors"
+                  >
+                    <Mail className="w-4 h-4 text-gray-600" />
+                    <span>{chat.email}</span>
+                  </a>
+                ) : null}
+                {!chat.linkedinUrl && !chat.email ? (
+                  <p className="text-sm text-gray-500">Add contact info in Edit Prep Details.</p>
+                ) : null}
               </div>
             </section>
 
